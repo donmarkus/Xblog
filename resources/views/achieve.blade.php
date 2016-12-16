@@ -2,7 +2,7 @@
 @section('title','归档')
 @section('content')
     <div class="container">
-        <div class="posts-count">共{{ $posts_count }}篇文章</div>
+        <div class="posts-count">{{ $posts_count }} @lang('xblog.articles')</div>
         <div id="cd-timeline" class="cd-container" style="margin: 0 0">
             @foreach($posts as $post)
                 <div class="cd-timeline-block">

@@ -12,23 +12,24 @@
             {{ $description or 'description' }}
         </h3>
         <p class="links">
-            <font aria-hidden="true">»</font>
-            <a href="{{ route('post.index') }}" aria-label="点击查看博客文章列表">博客</a>
+            <span aria-hidden="true">»</span>
+            <a href="{{ route('post.index') }}" aria-label="">Blog</a>
             @if(isset($github_username) && $github_username)
-                <font aria-hidden="true">/</font><a href="{{ route('projects') }}" aria-label="点击查看项目列表">项目</a>
+                <span aria-hidden="true">/</span><a href="{{ route('projects') }}"
+                                                    aria-label="">@lang('xblog.projects')</a>
             @endif
             @foreach($pages as $page)
-                <font aria-hidden="true">/</font><a href="{{ route('page.show',$page->name) }}"
-                                                    aria-label="查看{{ $author or 'author' }}的{{ $page->display_name }}">{{$page->display_name }}</a>
+                <span aria-hidden="true">/</span><a href="{{ route('page.show',$page->name) }}"
+                                                    aria-label="{{ $author or 'author' }} {{ $page->display_name }}">{{$page->display_name }}</a>
 
             @endforeach
 
         </p>
         <p class="links">
-            <font aria-hidden="true">»</font>
+            <span aria-hidden="true">»</span>
             @foreach(config('social') as $key => $value)
                 <a href="{{ $value['url'] }}" target="_blank"
-                   aria-label="{{ $author or 'author' }} 的 {{ ucfirst($key) }} 地址">
+                   aria-label="{{ $author or 'author' }} @lang('xblog.of') {{ ucfirst($key) }} @lang('xblog.address')">
                     <i class="{{ $value['fa'] }}" title="{{ ucfirst($key) }}"></i>
                 </a>
             @endforeach

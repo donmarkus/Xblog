@@ -95,4 +95,6 @@ return [
     'home' => 'Accueil',
     'no_image' => 'Aucune image',
     'other_documents' => 'Autres documents',
+    'address' => 'Addresse',
+    'of' => 'de',
 ];
