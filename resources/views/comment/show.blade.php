@@ -20,21 +20,23 @@
                 <span class="name">
                     <a href="{{ $href }}">{{ $comment->username }}</a>
                     @if(isAdminById($comment->user_id))
-                        <label class="role-label">博主</label>
+                        <label class="role-label">@lang('xblog.blogger')</label>
                     @endif
                 </span>
                 <span class="comment-operation pull-right">
                     @can('manager',$comment)
-                        <a title="删除" href="javascript:void (0)" data-method="delete" data-modal-target="这条评论"
+                        <a title="@lang('xblog.delete')" href="javascript:void (0)" data-method="delete"
+                           data-modal-target="这条评论"
                            data-url="{{ route('comment.destroy',$comment->id) }}">
                             <i class="fa fa-trash-o fa-fw"></i>
                         </a>
-                        <a title="编辑" style="text-decoration: none"
+                        <a title="@lang('xblog.edit')" style="text-decoration: none"
                            href="{{ route('comment.edit',[$comment->id,'redirect'=>(isset($redirect) && $redirect.'#'.$loop->index ? $redirect : '')]) }}">
                             <i class="fa fa-pencil fa-fw"></i>
                         </a>
                     @endcan
-                    <a title="回复" href="javascript:void (0);" onclick="replySomeone('{{ $comment->username }}')">
+                    <a title="@lang('xblog.reply')" href="javascript:void (0);"
+                       onclick="replySomeone('{{ $comment->username }}')">
                         <i class="fa fa-reply fa-fw"></i>
                     </a>
             </span>
@@ -48,5 +50,5 @@
         </div>
     </div>
 @empty
-    <p class="meta-item center-block">暂无评论~~</p>
+    <p class="meta-item center-block">@lang('xblog.no_comment')</p>
 @endforelse

@@ -6,7 +6,7 @@
             <div class="col-md-8 col-md-offset-2 col-sm-12">
                 <div class="widget widget-default">
                     <div class="widget-header">
-                        <h6><i class="fa fa-pencil fa-fw"></i>编辑评论</h6>
+                        <h6><i class="fa fa-pencil fa-fw"></i>@lang('xblog.edit_comment')</h6>
                     </div>
                     <div class="widget-body">
                         <form method="post"
@@ -14,7 +14,8 @@
                             {{ csrf_field() }}
                             <input type="hidden" name="_method" value="put">
                             <div class="form-group">
-                                <label for="comment-content">评论内容<span class="required">*</span></label>
+                                <label for="comment-content">@lang('xblog.comment')<span
+                                            class="required">*</span></label>
                                 <textarea placeholder="支持Markdown" style="resize: vertical" id="comment-content"
                                           required
                                           name="content"
@@ -23,7 +24,7 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary"
-                                       value="修改"/>
+                                       value="@lang('xblog.comment')"/>
                             </div>
                         </form>
                     </div>
