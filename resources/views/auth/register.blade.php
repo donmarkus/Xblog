@@ -5,13 +5,13 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="widget widget-default">
-                    <div class="widget-header"><h4>注册</h4></div>
+                    <div class="widget-header"><h4>@lang('xblog.register')</h4></div>
                     <div class="widget-body">
                         <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">昵称</label>
+                                <label for="name" class="col-md-4 control-label">@lang('xblog.name')</label>
 
                                 <div class="col-md-6">
                                     <input id="name" type="text" class="form-control" name="name"
@@ -26,7 +26,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-4 control-label">邮箱</label>
+                                <label for="email" class="col-md-4 control-label">@lang('xblog.email')</label>
 
                                 <div class="col-md-6">
                                     <input id="email" type="email" class="form-control" name="email"
@@ -41,7 +41,7 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                                <label for="password" class="col-md-4 control-label">密码</label>
+                                <label for="password" class="col-md-4 control-label">@lang('xblog.password')</label>
 
                                 <div class="col-md-6">
                                     <input id="password" type="password" class="form-control" name="password">
@@ -55,7 +55,8 @@
                             </div>
 
                             <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
-                                <label for="password-confirm" class="col-md-4 control-label">确认密码</label>
+                                <label for="password-confirm"
+                                       class="col-md-4 control-label">@lang('xblog.password_confirmation')</label>
 
                                 <div class="col-md-6">
                                     <input id="password-confirm" type="password" class="form-control"
@@ -72,13 +73,13 @@
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" class="btn btn-primary">
-                                        注册
+                                        @lang('xblog.register_button')
                                     </button>
                                 </div>
                             </div>
                         </form>
                         <a class="pull-right"  style="text-decoration: none" href="{{ route('github.login') }}">
-                            使用<i class="fa fa-lg fa-github fa-fw"></i>注册
+                            @lang('xblog.connect_with_github') <i class="fa fa-lg fa-github fa-fw"></i>
                         </a>
                     </div>
                 </div>
