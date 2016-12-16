@@ -43,12 +43,12 @@ class MentionedInComment extends BaseNotification
         $data = $this->comment->getCommentableData();
         return (new MailMessage)
             ->success()
-            ->greeting('亲爱的' . $notifiable->name)
+            ->greeting(trans('xblog.hello') . $notifiable->name)
             ->to($notifiable->email)
-            ->subject('有一条评论提到了您')
-            ->line($this->comment->username . '在' . $data['type'] . ':' . $data['title'] . ' 的评论中提到了您:')
+            ->subject(trans('xblog.you_have_been_mentioned_a_comment'))
+            ->line($this->comment->username . '在' . $data['type'] . ':' . $data['title'] . ' ' . trans('xblog.you_have_been_mentioned_a_comment') . ':')
             ->line($this->raw_content)
-            ->action('查看', $data['url']);
+            ->action(trans('xblog.view'), $data['url']);
     }
 
     /**

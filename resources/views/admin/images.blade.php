@@ -11,7 +11,6 @@
             <div class="widget-body">
                 <form role="form" class="form-horizontal" action="{{ route('upload.image') }}"
                       datatype="image"
-                      required="required"
                       enctype="multipart/form-data" method="post">
                     {{ csrf_field() }}
                     <div class="form-group">

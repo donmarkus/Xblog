@@ -43,8 +43,8 @@ class ImageController extends Controller
             return $this->imageRepository->uploadImageToQiNiu($request, false);
         } else {
             if ($this->imageRepository->uploadImageToQiNiu($request, true))
-                return back()->with('success', '上传成功');
-            return back()->withErrors('上传失败');
+                return back()->with('success', trans('xblog.upload_succeed'));
+            return back()->withErrors(trans('xblog.upload_failed'));
         }
     }
 }

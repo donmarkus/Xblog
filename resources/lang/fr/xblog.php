@@ -97,4 +97,13 @@ return [
     'other_documents' => 'Autres documents',
     'address' => 'Addresse',
     'of' => 'de',
+    //Emails Stuff
+    'hello' => 'Bonjour ',
+    'you_have_been_mentioned_a_comment' => 'Vous avez été mentionné dans un commentaire',
+    'in' => 'dans',
+    'view' => 'Voir',
+    'upload_failed' => 'Échec lors du chargement',
+    'upload_succeed' => 'Chargement réussie',
+    'deletion_succeed' => 'Suppression réussie',
+    'deletion_failed' => 'Suppression echouée',
 ];

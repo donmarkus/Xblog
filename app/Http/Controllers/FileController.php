@@ -44,8 +44,8 @@ class FileController extends Controller
         }
 
         if ($this->upload($request, $this->getTag($request)))
-            return back()->with('success', '上传成功');
-        return back()->withErrors('上传失败');
+            return back()->with('success', trans('xblog.upload_succeed'));
+        return back()->withErrors(trans('xblog.upload_failed'));
     }
 
     public function uploadTypeFile(Request $request)
@@ -55,20 +55,8 @@ class FileController extends Controller
             'type' => 'required',
         ]);
         if ($this->upload($request, $request->get('type')))
-            return back()->with('success', '上传成功');
-        return back()->withErrors('上传失败');
-    }
-
-    public function deleteFile(Request $request)
-    {
-        $key = $request->get('key');
-        $type = File::where('key', $key)->firstOrFail()->type;
-        $this->unknownFileRepository->setTag($type);
-        $result = $this->unknownFileRepository->delete($key);
-        if ($result) {
-            return back()->with('success', '删除成功');
-        }
-        return back()->with('success', '删除失败');
+            return back()->with('success', trans('xblog.upload_succeed'));
+        return back()->withErrors(trans('xblog.upload_failed'));
     }
 
     private function upload(Request $request, $type)
@@ -84,5 +72,17 @@ class FileController extends Controller
             $tag = 'unknown';
         }
         return $tag;
+    }
+
+    public function deleteFile(Request $request)
+    {
+        $key = $request->get('key');
+        $type = File::where('key', $key)->firstOrFail()->type;
+        $this->unknownFileRepository->setTag($type);
+        $result = $this->unknownFileRepository->delete($key);
+        if ($result) {
+            return back()->with('success', trans('xblog.deletion_succeed'));
+        }
+        return back()->with('success', trans('xblog.deletion_failed'));
     }
 }
