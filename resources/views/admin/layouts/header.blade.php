@@ -24,12 +24,13 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">{{ auth()->user()->name }}
                                 <span class="caret"></span></a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('post.index') }}">回到站点</a></li>
-                                <li><a href="{{ route('user.show',auth()->user()->name) }}">个人中心</a></li>
+                                <li><a href="{{ route('post.index') }}">@lang('xblog.home')</a></li>
+                                <li><a href="{{ route('user.show',auth()->user()->name) }}">@lang('xblog.profile')</a>
+                                </li>
                                 <li class="divider"></li>
                                 <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        退出登录
+                                        @lang('xblog.logout')
                                     </a></li>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
                                       style="display: none;">
@@ -38,8 +39,8 @@
                             </ul>
                         </li>
                     @else
-                        <li><a href="{{ url('login') }}">登录</a></li>
-                        <li><a href="{{ url('register') }}">注册</a></li>
+                        <li><a href="{{ url('login') }}">@lang('xblog.login')</a></li>
+                        <li><a href="{{ url('register') }}">@lang('xblog.register')</a></li>
                     @endif
                 </ul>
             </div>

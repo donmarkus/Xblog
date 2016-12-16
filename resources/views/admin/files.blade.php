@@ -1,11 +1,14 @@
 @extends('admin.layouts.app')
-@section('title','文件')
+@section('title')
+    @lang('xblog.files')
+@endsection
+
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-file fa-fw"></i>文件</h6>
+                    <h6><i class="fa fa-file fa-fw"></i>@lang('xblog.files')</h6>
                 </div>
                 <div class="widget-body">
                     <form role="form" class="form-horizontal" action="{{ route('upload.file') }}"
@@ -21,7 +24,7 @@
                             </div>
                             <div class="col-xs-2">
                                 <button type="submit" class="btn btn-primary">
-                                    上传
+                                    @lang('xblog.save')
                                 </button>
                             </div>
                         </div>
@@ -41,7 +44,7 @@
                             </div>
                             <div class="col-xs-2">
                                 <button type="submit" class="btn btn-primary">
-                                    上传
+                                    @lang('xblog.save')
                                 </button>
                             </div>
                         </div>
@@ -60,7 +63,7 @@
                             </div>
                             <div class="col-xs-2">
                                 <button type="submit" class="btn btn-primary">
-                                    上传
+                                    @lang('xblog.save')
                                 </button>
                             </div>
                         </div>
@@ -71,14 +74,14 @@
                         {{ csrf_field() }}
                         <div class="form-group">
                             <label class="col-xs-2 col-xs-offset-1 control-label">
-                                其他文件（如文章附件）
+                                @lang('xblog.other_documents')
                             </label>
                             <div class="col-xs-6">
                                 <input class="form-control" type="file" name="file">
                             </div>
                             <div class="col-xs-2">
                                 <button type="submit" class="btn btn-primary">
-                                    上传
+                                    @lang('xblog.save')
                                 </button>
                             </div>
                         </div>
@@ -102,7 +105,7 @@
                                         </button>
                                         <a class="btn btn-info"
                                            href="{{ getUrlByFileName($file->key) }}"
-                                                data-method="delete">
+                                           data-method="delete">
                                             <i class="fa fa-cloud-download fa-fw"></i>
                                         </a>
                                         <button class="btn btn-danger"

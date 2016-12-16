@@ -1,10 +1,12 @@
 @extends('admin.layouts.app')
-@section('title','图片')
+@section('title')
+    @lang('xblog.images')
+@endsection
 @section('content')
     <div class="row">
         <div class="widget widget-default">
             <div class="widget-header">
-                <h6><i class="fa fa-file-image-o fa-fw"></i>图片({{ $image_count }})</h6>
+                <h6><i class="fa fa-file-image-o fa-fw"></i>@lang('xblog.images')({{ $image_count }})</h6>
             </div>
             <div class="widget-body">
                 <form role="form" class="form-horizontal" action="{{ route('upload.image') }}"
@@ -21,7 +23,7 @@
                         </div>
                         <div class="col-xs-2">
                             <button type="submit" class="btn btn-primary">
-                                上传
+                                @lang('xblog.save')
                             </button>
                         </div>
                     </div>
@@ -49,9 +51,9 @@
                                     title="Copied">
                                 <i class="fa fa-copy fa-fw"></i>
                             </button>
-                            <a  class="btn btn-primary"
-                                    href="{{ getUrlByFileName($image->key) }}"
-                                    target="_blank">
+                            <a class="btn btn-primary"
+                               href="{{ getUrlByFileName($image->key) }}"
+                               target="_blank">
                                 <i class="fa fa-eye fa-fw"></i>
                             </a>
                             <button class="btn btn-danger"
@@ -69,7 +71,7 @@
                 </div>
             </div>
         @empty
-            <h3 class="center-block meta-item">没有图片</h3>
+            <h3 class="center-block meta-item">@lang('xblog.no_image')</h3>
         @endforelse
     </div>
     @if($images->lastPage() > 1)

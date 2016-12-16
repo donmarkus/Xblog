@@ -92,4 +92,7 @@ return [
     'background_image' => 'Image de fond',
     'save' => 'Enregistrer',
     'github_username' => 'Identifiant Github',
+    'home' => 'Accueil',
+    'no_image' => 'Aucune image',
+    'other_documents' => 'Autres documents',
 ];
