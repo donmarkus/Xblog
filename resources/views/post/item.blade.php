@@ -32,14 +32,14 @@
     </div>
     <!-- read more -->
     <div class="post-permalink">
-        <a title="阅读全文" href="{{ route('post.show',$post->slug) }}" class="btn btn-more">阅读全文</a>
+        <a title="@lang('xblog.read_more')" href="{{ route('post.show',$post->slug) }}" class="btn btn-more">@lang('xblog.read_more')</a>
     </div>
     <!-- post footer -->
     <div class="post-footer clearfix">
         <div class="pull-left tag-list">
             <i class="fa fa-tags"></i>
             @foreach($post->tags as $tag)
-                <a  class="tag" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
+                <a class="tag" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
             @endforeach
         </div>
     </div>

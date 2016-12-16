@@ -5,28 +5,28 @@
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-sticky-note fa-fw"></i>文章</h6>
+                    <h6><i class="fa fa-sticky-note fa-fw"></i>@lang('xblog.articles')</h6>
                 </div>
                 <div class="widget-body">
                     <table class="table table-hover table-bordered table-responsive">
                         <thead>
                         <tr>
-                            <th>标题</th>
-                            <th>状态</th>
-                            <th>action</th>
+                            <th>@lang('xblog.title')</th>
+                            <th>@lang('xblog.state')</th>
+                            <th>@lang('xblog.action')</th>
                         </tr>
                         </thead>
                         <tbody>
                         @foreach($posts as $post)
                             <?php
                             $class = '';
-                            $status = '未发表';
+                            $status = trans('xblog.not_published');
                             if ($post->trashed()) {
                                 $class = 'danger';
                                 $status = 'Deleted';
                             } else if ($post->isPublished()) {
                                 $class = 'success';
-                                $status = '已发表';
+                                $status = trans('xblog.published');
                             }
                             ?>
                             <tr class="{{ $class }}">

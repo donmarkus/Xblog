@@ -9,13 +9,13 @@
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-pencil  fa-fw"></i>写文章</h6>
+                    <h6><i class="fa fa-pencil  fa-fw"></i>@lang('xblog.write_article')</h6>
                 </div>
                 <div class="widget-body edit-form">
                     <form role="form" class="form-horizontal" action="{{ route('post.store') }}" method="post">
                         @include('post.form-content')
                         <button type="submit" class="btn btn-primary">
-                            创建
+                            @lang('xblog.form_article_create')
                         </button>
                     </form>
                 </div>

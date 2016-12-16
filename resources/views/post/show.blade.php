@@ -44,24 +44,24 @@
                         {!! $post->html_content !!}
                         <br>
                         <p>
-                            -- END
+                            -- @lang('xblog.end')
                         </p>
                     </div>
                     <div class="post-info-panel">
+                        {{--<p class="info">--}}
+                            {{--<label class="info-title">Copyright :</label><i class="fa fa-fw fa-creative-commons"></i>自由转载-非商用-非衍生-保持署名（<a--}}
+                                    {{--href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">Creative Commons 3.0 License</a>）--}}
+                        {{--</p>--}}
                         <p class="info">
-                            <label class="info-title">版权声明:</label><i class="fa fa-fw fa-creative-commons"></i>自由转载-非商用-非衍生-保持署名（<a
-                                    href="https://creativecommons.org/licenses/by-nc-nd/3.0/deed.zh">创意共享3.0许可证</a>）
-                        </p>
-                        <p class="info">
-                            <label class="info-title">创建日期:</label>{{ $post->created_at->format('Y年m月d日') }}
+                            <label class="info-title">@lang('xblog.created_date') :</label>{{ $post->created_at }}
                         </p>
                         @if(isset($post->published_at) && $post->published_at)
                             <p class="info">
-                                <label class="info-title">修改日期:</label>{{ $post->published_at->format('Y年m月d日') }}
+                                <label class="info-title">@lang('xblog.published_date') :</label>{{ $post->published_at }}
                             </p>
                         @endif
                         <p class="info">
-                            <label class="info-title">文章标签:</label>
+                            <label class="info-title">@lang('xblog.form_article_tags') :</label>
                             @foreach($post->tags as $tag)
                                 <a class="tag" href="{{ route('tag.show',$tag->name) }}">{{ $tag->name }}</a>
                             @endforeach

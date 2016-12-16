@@ -11,21 +11,21 @@
             <input type="hidden" name="commentable_type" value="{{ $commentable_type }}">
             @if(!auth()->check())
                 <div class="form-group">
-                    <label for="username">姓名<span class="required">*</span></label>
-                    <input class="form-control" id="username" type="text" name="username" placeholder="您的大名">
+                    <label for="username">@lang('xblog.username')<span class="required">*</span></label>
+                    <input class="form-control" id="username" type="text" name="username" placeholder="@lang('xblog.username')">
                 </div>
                 <div class="form-group">
-                    <label for="email">邮箱<span class="required">*</span></label>
-                    <input class="form-control" id="email" type="email" name="email" placeholder="邮箱不会公开">
+                    <label for="email">@lang('xblog.email')<span class="required">*</span></label>
+                    <input class="form-control" id="email" type="email" name="email" placeholder="@lang('xblog.email')">
                 </div>
                 <div class="form-group">
-                    <label for="site">个人网站</label>
-                    <input class="form-control" id="site" type="text" name="site" placeholder="可选，填写后点击头像可以直接进入">
+                    <label for="site">@lang('xblog.website')</label>
+                    <input class="form-control" id="site" type="text" name="site" placeholder="">
                 </div>
             @endif
             <div class="form-group">
-                <label for="comment-content">评论内容<span class="required">*</span></label>
-                <textarea placeholder="支持Markdown" style="resize: vertical" id="comment-content" name="content"
+                <label for="comment-content">@lang('xblog.form_article_comment')<span class="required">*</span></label>
+                <textarea placeholder="@lang('xblog.support_markdown')" style="resize: vertical" id="comment-content" name="content"
                           rows="5" spellcheck="false" class="form-control markdown-content autosize-target"></textarea>
                 <span class="help-block required">
                     <strong id="comment_error_msg"></strong>
@@ -33,7 +33,7 @@
             </div>
             <div class="form-group">
                 <input type="submit" id="comment-submit" class="btn btn-primary"
-                       value="回复"/>
+                       value="@lang('xblog.comment')"/>
             </div>
         </form>
     </div>

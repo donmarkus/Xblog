@@ -11,7 +11,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>用户</span>
+                            <span>@lang('xblog.users')</span>
                             <div class="info-title">{{ $info['user_count'] }}</div>
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>页面</span>
+                            <span>@lang('xblog.pages')</span>
                             <div class="info-title">{{ $info['page_count'] }}</div>
                         </div>
                     </div>
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>文章</span>
+                            <span>@lang('xblog.articles')</span>
                             <div class="info-title">{{ $info['post_count'] }}</div>
                         </div>
                     </div>
@@ -66,7 +66,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>评论</span>
+                            <span>@lang('xblog.comments')</span>
                             <div class="info-title">{{ $info['comment_count'] }}</div>
                         </div>
                     </div>
@@ -85,7 +85,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>标签</span>
+                            <span>@lang('xblog.form_article_tags')</span>
                             <div class="info-title">{{ $info['tag_count'] }}</div>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>分类</span>
+                            <span>@lang('xblog.form_article_category')s</span>
                             <div class="info-title">{{ $info['category_count'] }}</div>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                             </div>
                         </div>
                         <div class="col-xs-8">
-                            <span>图片</span>
+                            <span>@lang('xblog.images')</span>
                             <div class="info-title">{{ $info['image_count'] }}</div>
                         </div>
                     </div>
