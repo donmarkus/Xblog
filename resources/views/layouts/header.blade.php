@@ -25,9 +25,9 @@
             </div>
             <div class="collapse navbar-collapse fix-top" id="blog-navbar-collapse">
                 <ul class="nav navbar-nav">
-                    <li><a class="menu-item" href="{{ route('achieve') }}">归档</a></li>
+                    <li><a class="menu-item" href="{{ route('achieve') }}">@lang('xblog.achieve')</a></li>
                     @if(XblogConfig::getValue('github_username'))
-                        <li><a class="menu-item" href="{{ route('projects') }}">项目</a></li>
+                        <li><a class="menu-item" href="{{ route('projects') }}">@lang('xblog.projects')</a></li>
                     @endif
                     @foreach($pages as $page)
                         <li><a class="menu-item"
@@ -49,14 +49,15 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ route('user.show',auth()->user()->name) }}">个人中心</a></li>
+                                <li><a href="{{ route('user.show',auth()->user()->name) }}">@lang('xblog.profile')</a>
+                                </li>
                                 @if(isAdmin(Auth::user()))
-                                    <li><a href="{{ route('admin.index') }}">后台管理</a></li>
+                                    <li><a href="{{ route('admin.index') }}">@lang('xblog.manage')</a></li>
                                 @endif
                                 <li class="divider"></li>
                                 <li><a href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        退出登录
+                                        @lang('xblog.logout')
                                     </a>
                                 </li>
                                 <form id="logout-form" action="{{ url('/logout') }}" method="POST"
@@ -66,12 +67,12 @@
                             </ul>
                         </li>
                     @else
-                        <li><a href="{{ url('login') }}">登录</a></li>
-                        <li><a href="{{ url('register') }}">注册</a></li>
+                        <li><a href="{{ url('login') }}">@lang('xblog.login')</a></li>
+                        <li><a href="{{ url('register') }}">@lang('xblog.register')</a></li>
                     @endif
                 </ul>
                 <form class="navbar-form navbar-right" role="search" method="get" action="{{ route('search') }}">
-                    <input type="text" class="form-control" name="q" placeholder="搜索" required>
+                    <input type="text" class="form-control" name="q" placeholder="@lang('xblog.search')" required>
                 </form>
             </div>
         </nav>

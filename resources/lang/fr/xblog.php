@@ -19,4 +19,10 @@ return [
     'name' => 'Nom et Prénoms',
     'password_confirmation' => 'Confirmation de mot de passe',
     'register_button' => "S'inscrire",
+    'logout' => "Se déconnecter",
+    'search' => 'Rechercher',
+    'achieve' => 'Archive',
+    'projects' => 'Projets',
+    'profile' => 'Profil',
+    'manage' => 'Gérer',
 ];
