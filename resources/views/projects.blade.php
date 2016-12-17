@@ -1,5 +1,9 @@
 @extends('layouts.app')
-@section('title','项目')
+
+@section('title')
+    @lang('xblog.projects')
+@endsection
+
 @section('content')
     <div class="container">
         <div id="repo-template" style="display:none">
@@ -37,7 +41,7 @@
         <div class="projects row">
             <div class="center-block">
                 <i class="fa fa-spinner fa-spin fa-3x fa-fw"></i>
-                <h3>加载中...</h3>
+                <h3>@lang('xblog.loading')...</h3>
             </div>
         </div>
     </div>

@@ -1,5 +1,5 @@
 @extends('admin.layouts.app')
-@section('title','文章')
+@section('title','Articles')
 @section('content')
     <div class="row">
         <div class="col-md-12">
@@ -35,44 +35,52 @@
                                 <td>
                                     <div>
                                         <a {{ $post->trashed()?'disabled':'' }} href="{{ $post->trashed()?'javascript:void(0)':route('post.edit',$post->id) }}"
-                                           data-toggle="tooltip" data-placement="top" title="编辑"
+                                           data-toggle="tooltip" data-placement="top" title="@lang('xblog.edit')"
                                            class="btn btn-info">
                                             <i class="fa fa-pencil fa-fw"></i>
                                         </a>
                                         @if($post->trashed())
-                                            <form style="display: inline" method="post" action="{{ route('post.restore',$post->id) }}">
+                                            <form style="display: inline" method="post"
+                                                  action="{{ route('post.restore',$post->id) }}">
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="恢复">
+                                                <button type="submit" class="btn btn-primary" data-toggle="tooltip"
+                                                        data-placement="top" title="@lang('xblog.restore')">
                                                     <i class="fa fa-repeat fa-fw"></i>
                                                 </button>
                                             </form>
 
                                         @elseif($post->isPublished())
                                             <a href="{{ route('post.show',$post->slug) }}"
-                                               data-toggle="tooltip" data-placement="top" title="查看"
+                                               data-toggle="tooltip" data-placement="top" title="@lang('xblog.view')"
                                                class="btn btn-success">
                                                 <i class="fa fa-eye fa-fw"></i>
                                             </a>
-                                            <form style="display: inline" method="post" action="{{ route('post.publish',$post->id) }}">
+                                            <form style="display: inline" method="post"
+                                                  action="{{ route('post.publish',$post->id) }}">
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-warning" data-toggle="tooltip" data-placement="top" title="撤销发布">
+                                                <button type="submit" class="btn btn-warning" data-toggle="tooltip"
+                                                        data-placement="top" title="@lang('xblog.published')">
                                                     <i class="fa fa-undo fa-fw"></i>
                                                 </button>
                                             </form>
                                         @else
-                                            <a href="{{ route('post.preview',$post->slug) }}"  data-toggle="tooltip" data-placement="top" title="预览"
+                                            <a href="{{ route('post.preview',$post->slug) }}" data-toggle="tooltip"
+                                               data-placement="top" title="@lang('xblog.preview')"
                                                class="btn btn-default">
                                                 <i class="fa fa-eye fa-fw"></i>
                                             </a>
-                                            <form style="display: inline" method="post" action="{{ route('post.publish',$post->id) }}">
+                                            <form style="display: inline" method="post"
+                                                  action="{{ route('post.publish',$post->id) }}">
                                                 {{ csrf_field() }}
-                                                <button type="submit" class="btn btn-default" data-toggle="tooltip" data-placement="top" title="发布">
+                                                <button type="submit" class="btn btn-default" data-toggle="tooltip"
+                                                        data-placement="top" title="@lang('xblog.published')">
                                                     <i class="fa fa-send-o fa-fw"></i>
                                                 </button>
                                             </form>
                                         @endif
-                                        <button class="btn btn-danger" data-toggle="modal" data-title="{{ $post->title }}"
-                                                data-toggle="tooltip" data-placement="top" title="删除"
+                                        <button class="btn btn-danger"
+                                                data-title="{{ $post->title }}"
+                                                data-toggle="tooltip" data-placement="top" title="@lang('xblog.delete')"
                                                 data-url="{{ route('post.destroy',$post->id) }}"
                                                 data-force="{{ $post->trashed() }}"
                                                 data-target="#delete-post-modal">
@@ -96,18 +104,19 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title" id="myModalLabel">删除</h4>
+                    <h4 class="modal-title" id="myModalLabel">@lang('xblog.delete')</h4>
                 </div>
                 <div class="modal-body">
-                    确定删除<span id="span-title"></span>吗?
+                    @lang('xblog.delete')<span id="span-title"></span> ?
                 </div>
                 <div class="modal-footer">
                     <form id="delete-form" method="post">
                         {{ csrf_field() }}
                         <input type="hidden" name="_method" value="DELETE">
                         <input type="hidden" name="redirect" value="/admin/posts">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
-                        <button id="confirm-btn" type="submit" class="btn btn-primary">确定</button>
+                        <button type="button" class="btn btn-default"
+                                data-dismiss="modal">@lang('xblog.cancel')</button>
+                        <button id="confirm-btn" type="submit" class="btn btn-primary">@lang('xblog.confirm')</button>
                     </form>
                 </div>
             </div><!-- /.modal-content -->
@@ -121,10 +130,9 @@
             var url = $(e.relatedTarget).data('url');
             var title = $(e.relatedTarget).data('title');
             var force = $(e.relatedTarget).data('force');
-            if (force == '1')
-            {
-                $('#confirm-btn').text('确定(这将永久刪除)');
-                $('#confirm-btn').attr('class','btn btn-danger');
+            if (force == '1') {
+                $('#confirm-btn').text('OK');
+                $('#confirm-btn').attr('class', 'btn btn-danger');
             }
             $('#span-title').text(title);
             $('#delete-form').attr('action', url);

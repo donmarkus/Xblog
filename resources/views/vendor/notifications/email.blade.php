@@ -140,7 +140,7 @@ $style = [
 
                                         <!-- Salutation -->
                                         <p style="{{ $style['paragraph'] }}">
-                                            Regards,<br>{{ config('app.name') }}
+                                            @lang('xblog.regards'),<br>{{ config('app.name') }}
                                         </p>
 
                                         <!-- Sub Copy -->
@@ -149,8 +149,9 @@ $style = [
                                                 <tr>
                                                     <td style="{{ $fontFamily }}">
                                                         <p style="{{ $style['paragraph-sub'] }}">
-                                                            如果您点击 "{{ $actionText }}" 按钮出现问题,
-                                                            复制下面的链接到您的浏览器:
+                                                            @lang('xblog.please_click_here') "{{ $actionText }}
+                                                            " @lang('xblog.if_cant_click_button'),
+                                                            @lang('xblog.copy_link_to_browser'):
                                                         </p>
 
                                                         <p style="{{ $style['paragraph-sub'] }}">
@@ -177,7 +178,7 @@ $style = [
                                         <p style="{{ $style['paragraph-sub'] }}">
                                             &copy; {{ date('Y') }}
                                             <a style="{{ $style['anchor'] }}" href="{{ url('/') }}" target="_blank">{{ config('app.name') }}</a>.
-                                            All rights reserved.
+                                            @lang('xblog.all_right_reserved').
                                         </p>
                                     </td>
                                 </tr>

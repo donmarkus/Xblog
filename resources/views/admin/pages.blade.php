@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
-@section('title','页面')
+@section('title','Pages')
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-file fa-fw"></i>页面</h6>
+                    <h6><i class="fa fa-file fa-fw"></i>Pages</h6>
                 </div>
                 <div class="widget-body">
                     <a class="btn pull-right" href="{{ route('page.create') }}">
@@ -14,9 +14,9 @@
                     <table class="table table-hover table-bordered table-responsive">
                         <thead>
                         <tr>
-                            <th>名称</th>
+                            <th>@lang('xblog.name')</th>
                             <th>url</th>
-                            <th>操作</th>
+                            <th>@lang('xblog.action')</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -28,12 +28,12 @@
                                     <div>
 
                                         <a href="{{ route('page.edit',$page->id) }}"
-                                           data-toggle="tooltip" data-placement="top" title="编辑"
+                                           data-toggle="tooltip" data-placement="top" title="@lang('xblog.edit')"
                                            class="btn btn-info">
                                             <i class="fa fa-pencil fa-fw"></i>
                                         </a>
                                         <a href="/{{ $page->name }}"
-                                           data-toggle="tooltip" data-placement="top" title="查看"
+                                           data-toggle="tooltip" data-placement="top" title="@lang('xblog.view')"
                                            class="btn btn-success">
                                             <i class="fa fa-eye fa-fw"></i>
                                         </a>

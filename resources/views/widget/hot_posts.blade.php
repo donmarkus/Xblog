@@ -1,5 +1,5 @@
 <div class="widget widget-default">
-    <div class="widget-header"><h6><i class="fa fa-fire fa-fw"></i>热门文章</h6></div>
+    <div class="widget-header"><h6><i class="fa fa-fire fa-fw"></i>@lang('xblog.popular_articles')</h6></div>
     <ul class="widget-body hot-posts">
         @foreach($hotPosts as $post)
             <a class="list-group-item" title="{{ $post->title }}" href="{{ route('post.show',$post->slug) }}">

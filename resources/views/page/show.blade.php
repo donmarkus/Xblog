@@ -7,7 +7,7 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2 col-sm-12 phone-no-padding">
                 <ol class="breadcrumb">
-                    <li><a href="{{ route('post.index') }}">博客</a></li>
+                    <li><a href="{{ route('post.index') }}">Blog</a></li>
                     <li class="active">{{ ucfirst($page->display_name) }}</li>
                 </ol>
                 @can('update',$page)

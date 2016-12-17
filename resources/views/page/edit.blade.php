@@ -8,7 +8,7 @@
         <div class="col-md-12">
             <div id="data" class="widget widget-default" data-id="{{ $page->id . '.by@' . request()->ip() }}">
                 <div class="widget-header">
-                    <h6><i class="fa fa-pencil fa-fw"></i>修改页面</h6>
+                    <h6><i class="fa fa-pencil fa-fw"></i>@lang('xblog.edit')</h6>
                 </div>
                 <div class="widget-body edit-form">
                     <form role="form" class="form-horizontal" action="{{ route('page.update',$page->id) }}" method="post">
@@ -18,7 +18,7 @@
                         <div class="form-group">
                             <div class="col-md-8 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
-                                    修改
+                                    @lang('xblog.save')
                                 </button>
                             </div>
                         </div>

@@ -1,21 +1,23 @@
 @extends('admin.layouts.app')
-@section('title','评论')
+@section('title')
+    @lang('xblog.comments')
+@endsection
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-comments fa-fw"></i>评论</h6>
+                    <h6><i class="fa fa-comments fa-fw"></i>@lang('xblog.comments')</h6>
                 </div>
                 <div class="widget-body">
                     <table class="table table-hover table-bordered table-responsive">
                         <thead>
                         <tr>
-                            <th>用户</th>
+                            <th>@lang('xblog.users')</th>
                             <th>Email</th>
-                            <th>地址</th>
-                            <th>内容</th>
-                            <th>操作</th>
+                            <th>@lang('xblog.address')</th>
+                            <th>@lang('xblog.form_article_content')</th>
+                            <th>@lang('xblog.action')</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -47,19 +49,20 @@
                                     @if($comment->trashed())
                                         <button type="submit"
                                                 class="btn btn-danger"
-                                                data-modal-target="这条评论(永久)"
+                                                data-modal-target="@lang('xblog.delete_permanently')"
                                                 data-url="{{ route('comment.destroy',[$comment->id,'force'=>'true']) }}"
                                                 data-method="delete"
                                                 data-toggle="tooltip"
                                                 data-placement="top"
-                                                title="永久删除">
+                                                title="@lang('xblog.delete_permanently')">
                                             <i class="fa fa-trash-o fa-fw"></i>
                                         </button>
                                         <form style="display: inline-block" method="post"
                                               action="{{ route('comment.restore',$comment->id) }}">
                                             {{ csrf_field() }}
                                             <button type="submit" class="btn btn-primary"
-                                                    data-toggle="tooltip" data-placement="top" title="恢复">
+                                                    data-toggle="tooltip" data-placement="top"
+                                                    title="@lang('xblog.restore')">
                                                 <i class="fa fa-repeat fa-fw"></i>
                                             </button>
                                         </form>
@@ -67,12 +70,12 @@
                                     @else
                                         <button type="submit"
                                                 class="btn btn-danger"
-                                                data-modal-target="这条评论"
+                                                data-modal-target="@lang('xblog.delete')"
                                                 data-url="{{ route('comment.destroy',$comment->id) }}"
                                                 data-method="delete"
                                                 data-toggle="tooltip"
                                                 data-placement="top"
-                                                title="删除">
+                                                title="@lang('xblog.delete')">
                                             <i class="fa fa-trash-o fa-fw"></i>
                                         </button>
                                         <a class="btn btn-info"

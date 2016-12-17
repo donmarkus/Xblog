@@ -10,7 +10,7 @@
     </style>
 @endif
 <header class="main-header">
-    <div class="container-fluid" style="margin-top: -15px">
+    <div class="container" style="margin-top: -15px">
         <nav class="navbar site-navbar" role="navigation">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
@@ -77,7 +77,7 @@
             </div>
         </nav>
     </div>
-    <div class="container-fluid">
+    <div class="container">
         <div class="description">{{ $description or 'description' }}</div>
     </div>
 </header>

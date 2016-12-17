@@ -1,11 +1,11 @@
 @extends('admin.layouts.app')
-@section('title','标签')
+@section('title','Tags')
 @section('content')
     <div class="row">
         <div class="col-md-12">
             <div class="widget widget-default">
                 <div class="widget-header">
-                    <h6><i class="fa fa-tags fa-fw"></i>标签</h6>
+                    <h6><i class="fa fa-tags fa-fw"></i>Tags</h6>
                 </div>
                 <div class="widget-body">
                     <a class="btn pull-right" role="button" data-toggle="modal" data-target="#add-tag-modal">
@@ -14,9 +14,9 @@
                     <table class="table table-hover table-bordered table-responsive" style="overflow: auto">
                         <thead>
                         <tr>
-                            <th>名称</th>
-                            <th>文章</th>
-                            <th>操作</th>
+                            <th>@lang('xblog.name')</th>
+                            <th>@lang('xblog.articles')</th>
+                            <th>@lang('xblog.action')</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                                             data-method="delete"
                                             data-toggle="tooltip"
                                             data-placement="top"
-                                            title="删除">
+                                            title="@lang('xblog.delete')">
                                         <i class="fa fa-trash-o fa-fw"></i>
                                     </button>
                                 </td>
