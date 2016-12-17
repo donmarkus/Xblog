@@ -139,4 +139,6 @@ return [
     'invalid_email' => 'Email invalide',
     'failed' => 'Echec',
     'unknown' => 'Inconnu',
+    'new_message_received' => 'Vous avez reçu un nouveau commentaire',
+    'your' => 'Votre',
 ];

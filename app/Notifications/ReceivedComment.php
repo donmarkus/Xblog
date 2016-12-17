@@ -45,10 +45,10 @@ class ReceivedComment extends BaseNotification
             $email = $notifiable->email;
         return (new MailMessage)
             ->success()
-            ->greeting('亲爱的' . $notifiable->name)
+            ->greeting(trans('xblog.hello') . $notifiable->name)
             ->to($email)
-            ->subject('您收到了一条新的评论')
-            ->line('您的' . $data['type'] . ':' . $data['title'] . ', 收到了一条来自' . $this->comment->username . '的评论：')
+            ->subject(trans('xblog.new_message_received'))
+            ->line(trans('xblog.your') . $data['type'] . ':' . $data['title'] . ', 收到了一条来自' . $this->comment->username . '的评论：')
             ->line($this->comment->content)
             ->action('查看', $data['url']);
     }
