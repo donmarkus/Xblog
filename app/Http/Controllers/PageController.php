@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\PageRepository;
+use App\Http\Requests;
 use App\Page;
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 
 class PageController extends Controller
 {
@@ -49,23 +48,9 @@ class PageController extends Controller
         ]);
 
         if ($this->pageRepository->create($request)) {
-            return redirect()->route('admin.index')->with('success', '页面' . $request['name'] . '创建成功');
+            return redirect()->route('admin.index')->with('success', trans('xblog.saved'));
         }
-        return back()->withInput()->with('error', '页面' . $request['name'] . '创建失败');
-    }
-
-    public function pageShowing($page)
-    {
-        if (auth()->check()) {
-            $user = auth()->user();
-            $unreadNotifications = $user->unreadNotifications;
-            foreach ($unreadNotifications as $notifications) {
-                $comment = $notifications->data;
-                if ($comment['commentable_type'] == 'App\Page' && $comment['commentable_id'] == $page->id) {
-                    $notifications->markAsRead();
-                }
-            }
-        }
+        return back()->withInput()->with('error', trans("xblog.not_saved"));
     }
 
     public function show($name)
@@ -80,6 +65,20 @@ class PageController extends Controller
         }
         $this->pageShowing($page);
         return view('page.show', compact('page'));
+    }
+
+    public function pageShowing($page)
+    {
+        if (auth()->check()) {
+            $user = auth()->user();
+            $unreadNotifications = $user->unreadNotifications;
+            foreach ($unreadNotifications as $notifications) {
+                $comment = $notifications->data;
+                if ($comment['commentable_type'] == 'App\Page' && $comment['commentable_id'] == $page->id) {
+                    $notifications->markAsRead();
+                }
+            }
+        }
     }
 
     /**
@@ -112,9 +111,9 @@ class PageController extends Controller
             'content' => 'required',
         ]);
         if ($this->pageRepository->update($request, $page)) {
-            return redirect()->route('admin.index')->with('success', '页面' . $request['name'] . '修改成功');
+            return redirect()->route('admin.index')->with('success', trans('xblog.saved'));
         }
-        return back()->withInput()->withErrors('页面' . $request['name'] . '修改失败');
+        return back()->withInput()->withErrors(trans('xblog.not_saved'));
     }
 
     /**

@@ -7,6 +7,7 @@ use App\Http\Repositories\CategoryRepository;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use XblogConfig;
+
 class CategoryController extends Controller
 {
     protected $categoryRepository;
@@ -48,9 +49,9 @@ class CategoryController extends Controller
         ]);
 
         if ($this->categoryRepository->create($request))
-            return back()->with('success', '分类' . $request['name'] . '创建成功');
+            return back()->with('success', trans('xblog.saved'));
         else
-            return back()->with('error', '分类' . $request['name'] . '创建失败');
+            return back()->with('error', trans('xblog.not_saved'));
     }
 
     /**
@@ -96,10 +97,10 @@ class CategoryController extends Controller
         ]);
 
         if ($this->categoryRepository->update($request, $category)) {
-            return redirect()->route('admin.categories')->with('success', '分类' . $request['name'] . '修改成功');
+            return redirect()->route('admin.categories')->with('success', trans('xblog.saved'));
         }
 
-        return back()->withInput()->withErrors('分类' . $request['name'] . '修改失败');
+        return back()->withInput()->withErrors(trans('xblog.not_saved'));
     }
 
     /**
@@ -112,11 +113,11 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         if ($category->posts()->withoutGlobalScopes()->count() > 0) {
-            return redirect()->route('admin.categories')->withErrors($category->name . '下面有文章，不能刪除');
+            return redirect()->route('admin.categories')->withErrors(trans('xblog.cant_delete'));
         }
         $this->categoryRepository->clearCache();
         if ($category->delete())
-            return back()->with('success', $category->name . '刪除成功');
-        return back()->withErrors($category->name . '刪除失败');
+            return back()->with('success', trans('xblog.saved'));
+        return back()->withErrors(trans('xblog.not_saved'));
     }
 }

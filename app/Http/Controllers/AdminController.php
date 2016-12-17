@@ -11,7 +11,6 @@ use App\Http\Repositories\PostRepository;
 use App\Http\Repositories\TagRepository;
 use App\Http\Repositories\UserRepository;
 use App\Http\Requests;
-use App\Map;
 use App\Page;
 use App\User;
 use Illuminate\Http\Request;
@@ -82,7 +81,7 @@ class AdminController extends Controller
     {
         $inputs = $request->except('_token');
         $this->mapRepository->saveSettings($inputs);
-        return back()->with('success', '保存成功');
+        return back()->with('success', trans('xblog.saved'));
     }
 
     public function posts()

@@ -131,4 +131,12 @@ return [
     'cancel' => 'Annuler',
     'confirm' => 'Confirmer',
     'delete_permanently' => 'Supprimer définitivement',
+    'saved' => 'Enregistré',
+    'not_saved' => 'Problème survenu lors de l\'enregistrement',
+    'cant_delete' => 'Impossible de supprimer',
+    'comment_cant_be_empty' => 'Le commentaire ne peut pas être vide',
+    'username_cant_be_empty' => 'Le nom utilisateur ne peut pas être vide',
+    'invalid_email' => 'Email invalide',
+    'failed' => 'Echec',
+    'unknown' => 'Inconnu',
 ];

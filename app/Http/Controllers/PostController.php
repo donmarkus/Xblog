@@ -64,11 +64,23 @@ class PostController extends Controller
         $this->validatePostForm($request);
 
         if ($this->postRepository->create($request))
-            return redirect('admin/posts')->with('success', '文章' . $request['name'] . '创建成功');
+            return redirect('admin/posts')->with('success', trans('xblog.saved'));
         else
-            return redirect('admin/posts')->withErrors('文章' . $request['name'] . '创建失败');
+            return redirect('admin/posts')->withErrors(trans('xblog.not_saved'));
     }
 
+    private function validatePostForm(Request $request, $update = false)
+    {
+        $v = [
+            'title' => 'required',
+            'description' => 'required',
+            'category_id' => 'required',
+            'content' => 'required',
+        ];
+        if (!$update)
+            $v = array_merge($v, ['slug' => 'required|unique:posts']);
+        $this->validate($request, $v);
+    }
 
     public function show($slug)
     {
@@ -109,15 +121,19 @@ class PostController extends Controller
             $post->status = 1;
             $post->published_at = Carbon::now();
             if ($post->save())
-                return back()->with('success', $post->title . '发布成功');
+                return back()->with('success', trans('xblog.saved'));
         } else if ($post->status == 1) {
             $post->status = 0;
             if ($post->save())
-                return back()->with('success', $post->title . '撤销发布成功');
+                return back()->with('success', trans('xblog.saved'));
         }
-        return back()->withErrors($post->title . '操作失败');
+        return back()->withErrors(trans('xblog.not_saved'));
     }
 
+    public function clearAllCache()
+    {
+        $this->postRepository->clearAllCache();
+    }
 
     public function edit($id)
     {
@@ -132,7 +148,6 @@ class PostController extends Controller
         ]);
     }
 
-
     public function update(Request $request, $id)
     {
         $post = Post::withoutGlobalScopes()->find($id);
@@ -140,9 +155,9 @@ class PostController extends Controller
         $this->validatePostForm($request, true);
 
         if ($this->postRepository->update($request, $post)) {
-            return redirect('admin/posts')->with('success', '文章' . $request['name'] . '修改成功');
+            return redirect('admin/posts')->with('success', trans('xblog.saved'));
         } else
-            return redirect('admin/posts')->withErrors('文章' . $request['name'] . '修改失败');
+            return redirect('admin/posts')->withErrors(trans('xblog.not_saved'));
     }
 
     public function restore($id)
@@ -151,11 +166,10 @@ class PostController extends Controller
         if ($post->trashed()) {
             $post->restore();
             $this->clearAllCache();
-            return redirect()->route('admin.posts')->with('success', '恢复成功');
+            return redirect()->route('admin.posts')->with('success', trans('xblog.saved'));
         }
-        return redirect()->route('admin.posts')->withErrors('恢复失败');
+        return redirect()->route('admin.posts')->withErrors(trans('xblog.not_saved'));
     }
-
 
     public function destroy($id)
     {
@@ -172,26 +186,8 @@ class PostController extends Controller
         }
         if ($result) {
             $this->clearAllCache();
-            return redirect($redirect)->with('success', '删除成功');
+            return redirect($redirect)->with('success', trans('xblog.saved'));
         } else
-            return redirect($redirect)->withErrors('删除失败');
-    }
-
-    private function validatePostForm(Request $request, $update = false)
-    {
-        $v = [
-            'title' => 'required',
-            'description' => 'required',
-            'category_id' => 'required',
-            'content' => 'required',
-        ];
-        if (!$update)
-            $v = array_merge($v, ['slug' => 'required|unique:posts']);
-        $this->validate($request, $v);
-    }
-
-    public function clearAllCache()
-    {
-        $this->postRepository->clearAllCache();
+            return redirect($redirect)->withErrors(trans('xblog.not_saved'));
     }
 }

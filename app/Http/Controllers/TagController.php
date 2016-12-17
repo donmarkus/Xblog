@@ -34,9 +34,9 @@ class TagController extends Controller
 
         if ($this->tagRepository->create($request)) {
             $this->tagRepository->clearCache();
-            return back()->with('success', 'Tag' . $request['name'] . '创建成功');
+            return back()->with('success', trans('xblog.saved'));
         } else
-            return back()->with('error', 'Tag' . $request['name'] . '创建失败');
+            return back()->with('error', trans('xblog.not_saved'));
     }
 
     public function show($name)
@@ -51,12 +51,12 @@ class TagController extends Controller
     public function destroy(Tag $tag)
     {
         if ($tag->posts()->withoutGlobalScopes()->count() > 0) {
-            return redirect()->route('admin.tags')->withErrors($tag->name . '下面有文章，不能刪除');
+            return redirect()->route('admin.tags')->withErrors(trans('xblog.not_saved'));
         }
         if ($tag->delete()) {
             $this->tagRepository->clearCache();
-            return back()->with('success', $tag->name . '刪除成功');
+            return back()->with('success', trans('xblog.saved'));
         }
-        return back()->withErrors($tag->name . '刪除失败');
+        return back()->withErrors(trans('xblog.not_saved'));
     }
 }

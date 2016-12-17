@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Repositories\MapRepository;
-use Illuminate\Http\Request;
 use App\Http\Requests;
+use Illuminate\Http\Request;
 
 class MapController extends Controller
 {
@@ -27,9 +27,9 @@ class MapController extends Controller
             'value' => 'required',
         ]);
         if ($this->mapRepository->create($request))
-            return back()->with('success', '保存成功');
+            return back()->with('success', trans('xblog.saved'));
         else
-            return back()->withErrors('保存失败哦');
+            return back()->withErrors(trans('xblog.not_saved'));
     }
 
     public function get($key)

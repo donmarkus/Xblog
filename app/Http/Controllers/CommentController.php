@@ -33,10 +33,10 @@ class CommentController extends Controller
         if ($this->commentRepository->update($request->get('content'), $comment)) {
             $redirect = request('redirect');
             if ($redirect)
-                return redirect($redirect)->with('success', '修改成功');
-            return back()->with('success', '修改成功');
+                return redirect($redirect)->with('success', trans('xblog.saved'));
+            return back()->with('success', trans('xblog.saved'));
         }
-        return back()->withErrors('修改失败');
+        return back()->withErrors(trans('xblog.not_saved'));
     }
 
 
@@ -44,26 +44,26 @@ class CommentController extends Controller
     {
         if (!$request->get('content')) {
             return response()->json(
-                ['status' => 500, 'msg' => 'Comment content must not be empty !']
+                ['status' => 500, 'msg' => trans('xblog.comment_cant_be_empty')]
             );
         }
         if (!auth()->check()) {
             if (!($request->get('username') && $request->get('email'))) {
                 return response()->json(
-                    ['status' => 500, 'msg' => 'Username and email must not be empty !']
+                    ['status' => 500, 'msg' => trans('xblog.username_cant_be_empty')]
                 );
             }
             $pattern = "/^([0-9A-Za-z\\-_\\.]+)@([0-9a-z]+\\.[a-z]{2,3}(\\.[a-z]{2})?)$/i";
             if (!preg_match( $pattern, request('email') )) {
                 return response()->json(
-                    ['status' => 500, 'msg' => 'An Invalidate Email !']
+                    ['status' => 500, 'msg' => trans('xblog.invalid_email')]
                 );
             }
         }
 
         if ($comment = $this->commentRepository->create($request))
             return response()->json(['status' => 200, 'msg' => 'success']);
-        return response()->json(['status' => 500, 'msg' => 'failed']);
+        return response()->json(['status' => 500, 'msg' => trans('auth.failed')]);
     }
 
 
@@ -84,9 +84,9 @@ class CommentController extends Controller
         if ($comment->trashed()) {
             $comment->restore();
             $this->commentRepository->clearAllCache();
-            return redirect()->route('admin.comments')->with('success', '恢复成功');
+            return redirect()->route('admin.comments')->with('success', trans('xblog.saved'));
         }
-        return redirect()->route('admin.comments')->withErrors('恢复失败');
+        return redirect()->route('admin.comments')->withErrors(trans('xblog.not_saved'));
     }
 
 
@@ -101,8 +101,8 @@ class CommentController extends Controller
         $this->checkPolicy('manager', $comment);
 
         if ($this->commentRepository->delete($comment, request('force') == 'true')) {
-            return back()->with('success', '删除成功');
+            return back()->with('success', trans('xblog.saved'));
         }
-        return back()->withErrors('删除失败');
+        return back()->withErrors(trans('xblog.not_saved'));
     }
 }

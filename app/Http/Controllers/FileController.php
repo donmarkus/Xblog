@@ -69,7 +69,7 @@ class FileController extends Controller
     {
         $tag = $request->file('file')->getClientOriginalExtension();
         if (!$tag) {
-            $tag = 'unknown';
+            $tag = trans('xblog.unknown');
         }
         return $tag;
     }

@@ -48,9 +48,9 @@ class UserController extends Controller
         ]);
 
         if ($this->userRepository->update($request, $user)) {
-            return back()->with('success', '修改成功');
+            return back()->with('success', trans('xblog.saved'));
         }
-        return back()->with('success', '修改失败');
+        return back()->with('success', trans('xblog.not_saved'));
     }
 
 
@@ -67,9 +67,19 @@ class UserController extends Controller
         }
         if ($user->save()) {
             $this->userRepository->clearCache();
-            return back()->with('success', '修改成功');
+            return back()->with('success', trans('xblog.saved'));
         }
-        return back()->with('success', '修改失败');
+        return back()->with('success', trans('xblog.saved'));
+    }
+
+    private function uploadImage(User $user, Request $request, $key, $max = 1024, $fileName = 'image')
+    {
+        $this->checkPolicy('manager', $user);
+        $this->validate($request, [
+            $fileName => 'required|image|mimes:jpeg,jpg,png|max:' . $max,
+        ]);
+        $image = $request->file($fileName);
+        return $this->imageRepository->uploadImage($image, $key);
     }
 
     public function uploadAvatar(Request $request)
@@ -85,19 +95,9 @@ class UserController extends Controller
         }
         if ($user->save()) {
             $this->userRepository->clearCache();
-            return back()->with('success', '修改成功');
+            return back()->with('success', trans('xblog.saved'));
         }
-        return back()->with('success', '修改失败');
-    }
-
-    private function uploadImage(User $user, Request $request, $key, $max = 1024, $fileName = 'image')
-    {
-        $this->checkPolicy('manager', $user);
-        $this->validate($request, [
-            $fileName => 'required|image|mimes:jpeg,jpg,png|max:' . $max,
-        ]);
-        $image = $request->file($fileName);
-        return $this->imageRepository->uploadImage($image, $key);
+        return back()->with('success', trans('xblog.saved'));
     }
 
 }
